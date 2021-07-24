@@ -1,0 +1,11 @@
+{
+  "name": "movus-auth",
+  "version": "1.0.0",
+  "description": "Backend service handler for authentication",
+  "main": "index.js",
+  "scripts": {
+    "reload:nginx": "docker exec movus_auth_webserver nginx -s reload"
+  },
+  "author": "Advis Tasyah Mulia",
+  "license": "ISC"
+}
