@@ -10,6 +10,6 @@ RUN npm install --silent
 
 COPY . ./
 
-EXPOSE 8080
+EXPOSE 3000
 
 CMD [ -d "node_modules" ] && npm run start || npm ci && npm run start
