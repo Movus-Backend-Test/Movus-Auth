@@ -1,15 +1,13 @@
-const express = require("express")
-const path = require("path")
-const cookieParser = require("cookie-parser")
-const logger = require("morgan")
-const cors = require("cors")
+import express from "express"
+import path from "path"
+import cookieParser from "cookie-parser"
+import logger from "morgan"
+import cors from "cors"
+import indexRouter from "@routes/index"
 
 const app = express()
 
 app.use(cors())
-
-const indexRouter = require("./main/routes/index.js")
-
 app.use(logger("dev"))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
@@ -18,4 +16,4 @@ app.use(express.static(path.join(__dirname, "public")))
 
 app.use("/", indexRouter)
 
-module.exports = app
+export default app

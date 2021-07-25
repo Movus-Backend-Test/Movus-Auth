@@ -1,0 +1,10 @@
+{
+    "compilerOptions": {
+        "baseUrl": "./",
+        "paths": {
+            "@functions/*": ["main/functions/*"],
+            "@controllers/*": ["main/controllers/*"],
+            "@routes/*": ["main/routes/*"]
+        }
+    }
+}

@@ -17,6 +17,7 @@ model users {
   phone_number       String               @db.VarChar(25)
   user_type          String               @db.VarChar(25)
   password           String               @db.VarChar(100)
+  verified           Boolean              @default(false)
   verification_table verification_table[]
 }
 

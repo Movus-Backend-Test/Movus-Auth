@@ -1,4 +1,4 @@
-const jwt = require('jsonwebtoken')
+import jwt from "jsonwebtoken"
 
 const verifyToken = async (req, res, next) => {
     const authHeader = req.headers['authorization']
@@ -18,7 +18,7 @@ const generateToken = async (data) => {
     return jwt.sign(data, process.env.TOKEN_SECRET, { expiresIn: '1h' })
 }
 
-module.exports = {
+export default {
     verify: verifyToken,
-    generate: generateToken,
+    generate: generateToken
 }
