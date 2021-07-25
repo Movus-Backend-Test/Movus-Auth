@@ -22,7 +22,7 @@ transporter.verify((error, success) => {
   }
 })
 
-async function email(data) {
+const email = async (data) => {
   transporter.sendMail(data, (error, info) => {
     if (error) {
         return console.log(error);
