@@ -1,7 +1,6 @@
 import nodemailer from "nodemailer"
 
 const transporter = nodemailer.createTransport({
-    pool: true,
     host: process.env.SMTP_HOST,
     port: 587,
     tls: {

@@ -24,7 +24,7 @@ const authenticateToken = async (data, res) => {
 
 const generateToken = (data) => {
     jwt.sign(data, process.env.EMAIL_VERIFICATION_SECRET, {
-        expiresIn: '2h'
+        expiresIn: '1h'
     })
 }
 

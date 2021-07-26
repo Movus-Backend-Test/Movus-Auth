@@ -4,6 +4,7 @@ import cookieParser from "cookie-parser"
 import logger from "morgan"
 import cors from "cors"
 import indexRouter from "./main/routes"
+require('dotenv').config()
 
 const app = express()
 

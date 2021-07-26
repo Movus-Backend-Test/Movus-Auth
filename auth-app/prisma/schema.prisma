@@ -18,13 +18,22 @@ model users {
   user_type          String               @db.VarChar(25)
   password           String               @db.VarChar(100)
   verified           Boolean              @default(false)
-  verification_table verification_table[]
+  password_token     password_token[]
+  verification_token verification_token[]
 }
 
-model verification_table {
+model password_token {
+  id         Int    @id @default(autoincrement())
+  token      String @unique @db.VarChar
+  user_id    Int
+  expiration BigInt
+  users      users  @relation(fields: [user_id], references: [id])
+}
+
+model verification_token {
   id         Int    @id @default(autoincrement())
   token      String @unique @db.VarChar(50)
   user_id    Int
-  expiration Int
+  expiration BigInt
   users      users  @relation(fields: [user_id], references: [id])
 }
