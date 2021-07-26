@@ -34,10 +34,11 @@ const verifyUser = async (req, res) => {
     },
   })
 
-  await prisma.verification_token.delete({
+  // delete for all user
+  await prisma.verification_token.deleteMany({
     where: {
-      token: status.token,
-    },
+      user_id: status.user_id
+    }
   })
 
   return res.json({
