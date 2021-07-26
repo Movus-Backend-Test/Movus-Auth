@@ -8,18 +8,21 @@ datasource db {
 }
 
 model users {
-  id                 Int                  @id @default(autoincrement())
-  firstname          String               @db.VarChar(25)
-  lastname           String               @db.VarChar(25)
-  username           String               @unique @db.VarChar(25)
-  email              String               @unique @db.VarChar(50)
-  address            String               @db.VarChar(200)
-  phone_number       String               @db.VarChar(25)
-  user_type          String               @db.VarChar(25)
-  password           String               @db.VarChar(100)
-  verified           Boolean              @default(false)
-  password_token     password_token[]
-  verification_token verification_token[]
+  id                   Int                    @id @default(autoincrement())
+  firstname            String                 @db.VarChar(25)
+  lastname             String                 @db.VarChar(25)
+  username             String                 @unique @db.VarChar(25)
+  email                String                 @unique @db.VarChar(50)
+  address              String                 @db.VarChar(200)
+  phone_number         String                 @db.VarChar(25)
+  user_type            String                 @db.VarChar(25)
+  password             String                 @db.VarChar(100)
+  verified             Boolean                @default(false)
+  balance              Int                    @default(0)
+  finished_transaction finished_transaction[]
+  ongoing_transactions ongoing_transactions[]
+  password_token       password_token[]
+  verification_token   verification_token[]
 }
 
 model password_token {
@@ -36,4 +39,39 @@ model verification_token {
   user_id    Int
   expiration BigInt
   users      users  @relation(fields: [user_id], references: [id])
+}
+
+model cars {
+  id                   Int                    @id @default(autoincrement())
+  car_type             String                 @db.VarChar
+  brand                String                 @db.VarChar
+  color                String                 @db.VarChar
+  production_year      Int
+  cost                 Int
+  quantity             Int                    @default(0)
+  created_at           DateTime               @default(now()) @db.Date
+  deleted_at           DateTime?              @db.Date
+  finished_transaction finished_transaction[]
+  ongoing_transactions ongoing_transactions[]
+}
+
+model finished_transaction {
+  id         Int      @id @default(autoincrement())
+  user_id    Int
+  cars_id    Int
+  status     String   @db.VarChar
+  created_at DateTime @default(now()) @db.Date
+  cars       cars     @relation(fields: [cars_id], references: [id])
+  users      users    @relation(fields: [user_id], references: [id])
+}
+
+model ongoing_transactions {
+  id         Int      @default(autoincrement())
+  user_id    Int
+  cars_id    Int
+  created_at DateTime @default(now()) @db.Date
+  cars       cars     @relation(fields: [cars_id], references: [id])
+  users      users    @relation(fields: [user_id], references: [id])
+
+  @@id([user_id, cars_id])
 }
