@@ -12,4 +12,4 @@ COPY . ./
 
 EXPOSE 3000
 
-CMD [ -d "node_modules" ] && npm run start || npm ci && npm run start
+CMD [ -d "node_modules" ] && npx prisma migrate deploy && npm run start || npm ci && npx prisma migrate deploy && npm run start
