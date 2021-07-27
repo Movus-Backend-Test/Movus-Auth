@@ -10,7 +10,8 @@ const registerCar = async (req, res) => {
       !req.body.color ||
       !req.body.production_year ||
       !req.body.cost ||
-      !req.body.quantity
+      !req.body.quantity ||
+      !req.body.image_url
     ) {
       return res
         .status(404)
@@ -25,6 +26,7 @@ const registerCar = async (req, res) => {
         production_year: req.body.production_year,
         cost: req.body.cost,
         quantity: req.body.quantity,
+        image_url: req.body.image_url
       },
     })
 
@@ -49,7 +51,8 @@ const updateCar = async (req, res) => {
       !req.body.color ||
       !req.body.production_year ||
       !req.body.cost ||
-      !req.body.quantity
+      !req.body.quantity ||
+      !req.body.image_url
     ) {
       return res
         .status(404)
@@ -81,6 +84,7 @@ const updateCar = async (req, res) => {
         production_year: req.body.production_year,
         cost: req.body.cost,
         quantity: req.body.quantity,
+        image_url: req.body.image_url
       },
     })
 
