@@ -13,6 +13,15 @@
 
 <br />
 
+### API Documentation (Postman Documenter)
+
+-   [Documentation](https://documenter.getpostman.com/view/16810795/TzsZsowm#0d2b3552-4a6e-447c-bb27-d17edd92837d)
+
+
+### Deployment Architecture Image
+
+-   [Architecture](https://drive.google.com/file/d/1z6hHVRs7bvmkxy8xDzTjAlSOx-lNEdcw/view)
+
 ### Built With
 
 -   [ExpressJS](https://expressjs.com/)
