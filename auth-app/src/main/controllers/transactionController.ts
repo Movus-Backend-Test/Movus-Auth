@@ -271,11 +271,27 @@ const finishTransaction = async (req, res) => {
       },
     })
 
-    await prisma.$transaction([revertUserBalance, revertCarStock])
+    const createFinishedTransaction = prisma.finished_transaction.create({
+      data: {
+        users: {
+          connect: {
+            id: req.body.userId,
+          },
+        },
+        cars: {
+          connect: {
+            id: req.body.carsId,
+          },
+        },
+        status: "cancel",
+      },
+    })
+
+    await prisma.$transaction([revertUserBalance, revertCarStock, createFinishedTransaction])
 
     return res.status(200).json({
       message:
-        "oh no, transaction is canceled by admin, don't worry your money is back!",
+        "oh no, transaction is canceled by admin, don't worry member money and stock is back!",
       status: true,
     })
   } catch (err) {
@@ -284,4 +300,12 @@ const finishTransaction = async (req, res) => {
       .status(500)
       .json({ message: "A server error occured!", error: err, status: false })
   }
+}
+
+export default {
+  book:bookACar,
+  topUp:topUp,
+  getBalance:getBalance,
+  getAll:getAllTransaction,
+  finish:finishTransaction
 }

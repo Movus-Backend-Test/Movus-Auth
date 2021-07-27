@@ -2,7 +2,10 @@ import express from "express"
 import loginController from "../controllers/loginController"
 import verifyController from "../controllers/verifyController"
 import registerController from "../controllers/registerController"
+import carsController from "../controllers/carsController"
+import transactionController from "../controllers/transactionController"
 import rateLimit from "express-rate-limit"
+import token from "../functions/tokenAuth"
 
 const router = express.Router()
 
@@ -40,5 +43,19 @@ router.post('/verify/regenerate', generateVerifyLimiter, (req, res) => verifyCon
 router.post('/account/generateresettoken', (req, res) => registerController.forgetPassword(req, res))
 router.post('/account/resetpassword', (req, res) => registerController.resetPassword(req, res))
 router.post('/account/changepassword', (req, res) => loginController.changePassword(req, res))
+router.post('/account/getbalance', token.verify, (req, res) => transactionController.getBalance(req, res))
+router.post('/account/topup', token.verify, (req, res) => transactionController.topUp(req, res))
+
+router.post('/car/detail', (req, res) => carsController.detail(req, res))
+router.post('/car/all', (req, res) => carsController.get(req, res))
+router.post('/car/find', (req, res) => carsController.find(req, res))
+
+router.post('/car/register', token.verifyAdmin, (req, res) => carsController.register(req, res))
+router.post('/car/update', token.verifyAdmin, (req, res) => carsController.update(req, res))
+router.post('/car/delete', token.verifyAdmin, (req, res) => carsController.delete(req, res))
+
+router.post('/transaction/book', token.verifyMember, (req, res) => transactionController.book(req, res))
+router.post('/transaction/all', token.verifyAdmin, (req, res) => transactionController.getAll(req, res))
+router.post('/transaction/finish', token.verifyAdmin, (req, res) => transactionController.finish(req, res))
 
 export default router

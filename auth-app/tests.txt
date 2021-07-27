@@ -1,0 +1,51 @@
+/register
+{
+    "email": "advistasyam@gmail.com",
+    "firstname": "advis",
+    "lastname": "tasyah mulia",
+    "username": "advis",
+    "password": "password",
+    "address": "jalan",
+    "phone_number": "081233110190",
+    "user_type": "normal"
+}
+{
+    "email": "kangsabun71@gmail.com",
+    "firstname": "advis",
+    "lastname": "tasyah mulia",
+    "username": "admin",
+    "password": "password",
+    "address": "jalan",
+    "phone_number": "081233110190",
+    "user_type": "admin"
+}
+
+/login
+{
+    "username": "advis",
+    "password": "password"
+}
+{
+    "username": "admin",
+    "password": "password"
+}
+
+/car/register
+
+{
+    "car_type": "sedan",
+    "brand": "Mercedes Benz C200 W204",
+    "color": "Metalic Black",
+    "production_year": 2014,
+    "cost": 1200,
+    "quantity": 10
+}
+{
+    "car_type": "sedan",
+    "brand": "BMW E92 M3",
+    "color": "Singapore Gray",
+    "production_year": 2010,
+    "cost": 1200,
+    "quantity": 10
+}
+

@@ -110,6 +110,13 @@ const getCarDetailsById = async (req, res) => {
       },
     })
 
+    if (car == null) {
+      return res.status(404).json({
+        message: "car not found",
+        status: false,
+      })
+    }
+
     // check car is deleted
     if (car.deleted_at) {
       return res.status(406).json({
@@ -118,15 +125,15 @@ const getCarDetailsById = async (req, res) => {
       })
     }
 
-    const carDetail = await prisma.cars.findUnique({
-      where: {
-        id: req.body.id,
-      },
-    })
+    // const carDetail = await prisma.cars.findUnique({
+    //   where: {
+    //     id: req.body.id,
+    //   },
+    // })
 
     return res.status(200).json({
       message: "success",
-      data: carDetail,
+      data: car,
       status: true,
     })
   } catch (err) {
@@ -149,7 +156,7 @@ const getAllCar = async (req, res) => {
       where: {
         deleted_at: null,
       },
-      skip: (req.body.page - 1) * 10,
+      skip: (page - 1) * 10,
       take: 10,
     })
 
@@ -185,6 +192,7 @@ const findCar = async (req, res) => {
       where: {
         brand: {
           contains: req.body.brand,
+          mode: 'insensitive'
         },
         deleted_at: null,
       },
